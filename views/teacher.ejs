@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://assets.targetimg1.com/static/images/favicon.ico" id="favicon" rel="icon" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <title>Dashboard | Teacher</title>
+</head>
+<body class="teacher-body">
+    <%- include('partials/nav-bar') %>
+    <div class="leave-body hidden">
+        <div class="leave-table">
+            <form id="leaveForm">
+                <div class="heading">
+                    <h2>Leave Request from <b><i style="color: #fff;" id="heading"></i></b></h2>
+                </div>  
+                <div class="input-box">
+                    <label for="dateofleave">Date of Leave:</label>
+                    <input id="dateofleave" type="date" name="dateofleave" required/>
+                </div>
+                <div class="input-box">
+                    <label for="reasonofleave">Reason of Leave:</label>
+                    <textarea id="reasonofleave" name="reasonofleave" required></textarea>
+                </div>
+                <div class="input-box message">
+                    <p id="errorMessage"></p>
+                </div>
+                <div class="input-box button">
+                    <button class="cancel-button" type="button" onclick="cancelLeave()">Cancel</button>
+                    <button class="save-button" type="submit" onclick="saveLeave()">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="timetable-body">
+        <div class="controls">
+            <button class="leave-button" type="button" onclick="leaveRequest()" id="leaveRequest">Leave Request</button>
+        </div>
+        <div class="timetable-container">
+            <h2 class="teacher-heading" >Weekly Time Table</h2>
+            <table class="timetable">
+                <thead>
+                    <tr>
+                        <th>Day / Lecture</th>
+                        <th>Lecture 1</th>
+                        <th>Lecture 2</th>
+                        <th>Lecture 3</th>
+                        <th>Lecture 4</th>
+                        <th>Lecture 5</th>
+                        <th>Lecture 6</th>
+                        <th>Lecture 7</th>
+                        <th>Lecture 8</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Monday</td>      <td id="monday-1"></td><td id="monday-2"></td><td id="monday-3"></td><td id="monday-4"></td><td id="monday-5"></td><td id="monday-6"></td><td id="monday-7"></td><td id="monday-8"></td></tr>
+                    <tr><td>Tuesday</td>     <td id="tuesday-1"></td><td id="tuesday-2"></td><td id="tuesday-3"></td><td id="tuesday-4"></td><td id="tuesday-5"></td><td id="tuesday-6"></td><td id="tuesday-7"></td><td id="tuesday-8"></td></tr>
+                    <tr><td>Wednesday</td>   <td id="wednesday-1"></td><td id="wednesday-2"></td><td id="wednesday-3"></td><td id="wednesday-4"></td><td id="wednesday-5"></td><td id="wednesday-6"></td><td id="wednesday-7"></td><td id="wednesday-8"></td></tr>
+                    <tr><td>Thursday</td>    <td id="thursday-1"></td><td id="thursday-2"></td><td id="thursday-3"></td><td id="thursday-4"></td><td id="thursday-5"></td><td id="thursday-6"></td><td id="thursday-7"></td><td id="thursday-8"></td></tr>
+                    <tr><td>Friday</td>      <td id="friday-1"></td><td id="friday-2"></td><td id="friday-3"></td><td id="friday-4"></td><td id="friday-5"></td><td id="friday-6"></td><td id="friday-7"></td><td id="friday-8"></td></tr>
+                    <tr><td>Saturday</td>    <td id="saturday-1"></td><td id="saturday-2"></td><td id="saturday-3"></td><td id="saturday-4"></td><td id="saturday-5"></td><td id="saturday-6"></td><td id="saturday-7"></td><td id="saturday-8"></td></tr>
+                    <tr><td>Sunday</td>      <td id="sunday-1"></td><td id="sunday-2"></td><td id="sunday-3"></td><td id="sunday-4"></td><td id="sunday-5"></td><td id="sunday-6"></td><td id="sunday-7"></td><td id="sunday-8"></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="/js/teacher.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://assets.targetimg1.com/static/images/favicon.ico" id="favicon" rel="icon" type="image/png">
+    <title>Dashboard | Admin</title>
+</head>
+<body class="admin-body">
+    <%- include('partials/nav-bar') %>
+    <div class="form-body hidden">
+        <div class="form-table">
+            <h2>Add Time Table Details</h2>
+            <form id="lectureForm">
+                <div class="input-box">
+                    <label for="subject">Subject Name</label>
+                    <input id="subject" type="text" placeholder="Subject" required>
+                </div>
+                <div class="input-box">
+                    <label for="room-number">Room Number</label>
+                    <input id="room-number" type="text" placeholder="Room Number" required>
+                </div>
+                <div class="input-box">
+                    <label for="day">Choose a day:</label>
+                    <select name="day" id="day">
+                        <option value="" selected hidden>Choose a day</option>
+                        <option value="monday">Monday</option>
+                        <option value="tuesday">Tuesday</option>
+                        <option value="wednesday">Wednesday</option>
+                        <option value="thursday">Thursday</option>
+                        <option value="friday">Friday</option>
+                        <option value="saturday">Saturday</option>
+                        <option value="sunday">Sunday</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label for="date">Date</label>
+                    <input id="date" type="date" required>
+                </div>
+                <div class="input-box">
+                    <label for="slot">Choose a lecture:</label>
+                    <select name="slot" id="slot">
+                        <option value="" selected hidden>Choose a lecture</option>
+                        <option value="lecture-1">Lecture 1</option>
+                        <option value="lecture-2">Lecture 2</option>
+                        <option value="lecture-3">Lecture 3</option>
+                        <option value="lecture-4">Lecture 4</option>
+                        <option value="lecture-5">Lecture 5</option>
+                        <option value="lecture-6">Lecture 6</option>
+                        <option value="lecture-7">Lecture 7</option>
+                        <option value="lecture-8">Lecture 8</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label for="selected-teacher">Teacher</label>
+                    <input id="selected-teacher" type="text" value="" required>
+                </div>
+                <div class="input-box message">
+                    <p id="errorMessage"></p>
+                </div>
+                <div class="input-box button">
+                    <button  class="cancel-button" type="button" onclick="cancel()">Cancel</button>
+                    <button  class="save-button" type="button" onclick="save()">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="timetable-body">
+        <div class="controls">
+            <div class="select-users">
+                <select name="teachers" id="teacherSelect">
+                    <option value="" selected hidden>Choose teacher</option>
+                </select>
+            </div>
+            <button  class="add-timetable-details" type="button" onclick="addtimetable()">Add Time Table Details</button>
+        </div>
+        <div class="timetable-container">
+            <h2 class="admin-heading">Weekly Time Table</h2>
+            <table class="timetable">
+                <thead>
+                    <tr>
+                        <th>Day / Lecture</th>
+                        <th>Lecture 1</th>
+                        <th>Lecture 2</th>
+                        <th>Lecture 3</th>
+                        <th>Lecture 4</th>
+                        <th>Lecture 5</th>
+                        <th>Lecture 6</th>
+                        <th>Lecture 7</th>
+                        <th>Lecture 8</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Monday</td>      <td id="monday-1"></td><td id="monday-2"></td><td id="monday-3"></td><td id="monday-4"></td><td id="monday-5"></td><td id="monday-6"></td><td id="monday-7"></td><td id="monday-8"></td></tr>
+                    <tr><td>Tuesday</td>     <td id="tuesday-1"></td><td id="tuesday-2"></td><td id="tuesday-3"></td><td id="tuesday-4"></td><td id="tuesday-5"></td><td id="tuesday-6"></td><td id="tuesday-7"></td><td id="tuesday-8"></td></tr>
+                    <tr><td>Wednesday</td>   <td id="wednesday-1"></td><td id="wednesday-2"></td><td id="wednesday-3"></td><td id="wednesday-4"></td><td id="wednesday-5"></td><td id="wednesday-6"></td><td id="wednesday-7"></td><td id="wednesday-8"></td></tr>
+                    <tr><td>Thursday</td>    <td id="thursday-1"></td><td id="thursday-2"></td><td id="thursday-3"></td><td id="thursday-4"></td><td id="thursday-5"></td><td id="thursday-6"></td><td id="thursday-7"></td><td id="thursday-8"></td></tr>
+                    <tr><td>Friday</td>      <td id="friday-1"></td><td id="friday-2"></td><td id="friday-3"></td><td id="friday-4"></td><td id="friday-5"></td><td id="friday-6"></td><td id="friday-7"></td><td id="friday-8"></td></tr>
+                    <tr><td>Saturday</td>    <td id="saturday-1"></td><td id="saturday-2"></td><td id="saturday-3"></td><td id="saturday-4"></td><td id="saturday-5"></td><td id="saturday-6"></td><td id="saturday-7"></td><td id="saturday-8"></td></tr>
+                    <tr><td>Sunday</td>      <td id="sunday-1"></td><td id="sunday-2"></td><td id="sunday-3"></td><td id="sunday-4"></td><td id="sunday-5"></td><td id="sunday-6"></td><td id="sunday-7"></td><td id="sunday-8"></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="/js/admin.js"></script>
+</body>
+</html>
