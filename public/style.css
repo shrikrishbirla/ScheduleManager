@@ -53,15 +53,28 @@ body {
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.form-table,.leave-table h2{
-    text-align: center;
-    margin-bottom: 20px;
-    color: #ff0000;
+.input-box {
+    margin: 5px 0px;
 }
 
+.time-slot {
+    display: flex;
+    width: 90%;
+    margin: auto;
+}
 
-.input-box {
-    margin-bottom: 15px;
+#time-slot {
+    margin: 20px;
+}
+
+.time-slot label {
+    font-size: 20px;
+    margin: auto;
+}
+
+.time-slot input[type="time"]{
+    width: 20%;
+    margin: 10px;
 }
 
 .input-box.message {

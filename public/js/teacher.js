@@ -1,6 +1,7 @@
+let username = null;
 document.addEventListener("DOMContentLoaded", async () => {
     const heading = document.getElementById('heading');
-    const username = sessionStorage.getItem("username");    
+    username = sessionStorage.getItem("username");    
 
     if (heading && username) {
         heading.innerText = username;
