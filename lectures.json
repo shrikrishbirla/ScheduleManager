@@ -3,32 +3,10 @@
     "subject": "Mathematics",
     "roomNumber": "24CV",
     "day": "monday",
-    "date": "2025-07-21",
+    "date": "2025-07-28",
+    "startTime": "09:00",
+    "endTime": "10:00",
     "slot": "lecture-1",
     "teacher": "Aditya"
-  },
-  {
-    "subject": "Hindi",
-    "roomNumber": "12SV",
-    "day": "monday",
-    "date": "2025-07-21",
-    "slot": "lecture-1",
-    "teacher": "Khushi"
-  },
-  {
-    "subject": "Physics",
-    "roomNumber": "23SC",
-    "day": "monday",
-    "date": "2025-07-21",
-    "slot": "lecture-2",
-    "teacher": "Aditya"
-  },
-  {
-    "subject": "Mathematics",
-    "roomNumber": "12CV",
-    "day": "monday",
-    "date": "2025-07-21",
-    "slot": "lecture-2",
-    "teacher": "Khushi"
   }
 ]

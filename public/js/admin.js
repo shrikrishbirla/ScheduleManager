@@ -73,15 +73,17 @@ async function save() {
     const roomNumber = document.getElementById('room-number').value;
     const day = document.getElementById('day').value;
     const date = document.getElementById('date').value;
+    const startTime = document.getElementById('start-time').value;
+    const endTime = document.getElementById('end-time').value;
     const slot = document.getElementById('slot').value;
     const teacher = document.getElementById('selected-teacher').value;
 
-    if (!subject || !roomNumber || !day || !date || !slot || !teacher) {
+    if (!subject || !roomNumber || !day || !date || !slot || !teacher || !startTime || !endTime) {
         showerrorMessage("Please fill in all fields");
         return;
     }
 
-    const lecture = { subject, roomNumber, day, date, slot, teacher };
+    const lecture = { subject, roomNumber, day, date, startTime, endTime, slot, teacher };
 
     try {
         const res = await fetch("/add-lecture", {

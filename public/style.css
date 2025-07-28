@@ -58,8 +58,11 @@ body {
 }
 
 .time-slot {
+    background: linear-gradient(90deg, #814d4d, #be4a4a);
     display: flex;
     width: 90%;
+    border-radius: 10px;
+    padding: 20px;
     margin: auto;
 }
 
@@ -75,6 +78,7 @@ body {
 .time-slot input[type="time"]{
     width: 20%;
     margin: 10px;
+    font-size: 10px;
 }
 
 .input-box.message {
