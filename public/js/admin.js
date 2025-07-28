@@ -108,6 +108,9 @@ async function save() {
     ['subject', 'room-number', 'day', 'date', 'slot'].forEach(id => {
         document.getElementById(id).value = '';
     });
+    
+    document.getElementById('start-time').value = '';
+    document.getElementById('end-time').value = '';
 
     form.classList.add('hidden');
     timeTable.classList.remove('hidden');
@@ -130,6 +133,9 @@ function cancel() {
     ['subject', 'room-number', 'day', 'date', 'slot'].forEach(id => {
         document.getElementById(id).value = '';
     });
+
+    document.getElementById('start-time').value = '';
+    document.getElementById('end-time').value = '';
 
     form.classList.add('hidden');
     timeTable.classList.remove('hidden');

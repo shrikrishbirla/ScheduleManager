@@ -115,9 +115,18 @@ app.post('/add-lecture', async (req, res) => {
         const data = await fs.readFile(LectureFile, 'utf8');
         const lectures = JSON.parse(data);
 
+        const exists = lectures.find(l =>
+            l.teacher === req.body.teacher &&
+            l.day === req.body.day &&
+            l.slot === req.body.slot
+        );
+
+        if (exists) {
+            return res.status(409).json({ message: "Lecture already assigned for this slot." });
+        }
+
         lectures.push(req.body);
         await fs.writeFile(LectureFile, JSON.stringify(lectures, null, 2));
-
         res.status(200).json({ message: "Lecture added!" });
     } catch (err) {
         console.error("Error saving lecture:", err);
