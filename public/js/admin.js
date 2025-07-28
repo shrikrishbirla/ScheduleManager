@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const heading = document.getElementById('heading');
     const username = sessionStorage.getItem("username");
     if (heading && username) {
-        heading.innerText = `${username}`;
+        heading.innerText = `${username}` || 'Admin';
     }
 
     populateTeacher();
@@ -49,7 +49,7 @@ async function populateTimetable(username) {
     try {
         const response = await fetch("/lectures", {credentials: "include"});
         const lectures = await response.json();
-        document.querySelectorAll("td[id*='-']").forEach(cell => (cell.innerHTML = ""));
+        document.querySelectorAll(".lecture-slot").forEach(cell => (cell.innerHTML = ""));
         lectures.forEach(lecture => {
             if (lecture.teacher === username) {
                 const slotNumber = lecture.slot.split('-')[1];
@@ -83,6 +83,11 @@ async function save() {
         return;
     }
 
+    if (startTime >= endTime) {
+        showerrorMessage("Start time must be before end time");
+        return;
+    }
+
     const lecture = { subject, roomNumber, day, date, startTime, endTime, slot, teacher };
 
     try {
@@ -98,7 +103,8 @@ async function save() {
         if (res.ok) {
             populateTimetable(teacher);
         } else {
-            showerrorMessage("Failed to save lecture");
+            const { message } = await res.json();
+            showerrorMessage(message || "Failed to save lecture");
         }
     } catch (err) {
         console.error("Error saving lecture:", err);
