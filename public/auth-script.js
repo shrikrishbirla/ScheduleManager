@@ -17,12 +17,10 @@ registeration_link.addEventListener('click', () => {
 
 document.getElementById("registerAuthForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    signup();
 });
 
 document.getElementById("loginAuthForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    login();
 });
 
 async function signup() {
@@ -54,12 +52,11 @@ async function signup() {
     }
 
     try {
-        const response = await fetch("/register", {
-            method: "POST",
+         const response = await fetch('/api/auth/register', {
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json"
+                'Content-Type': 'application/json'
             },
-            credentials: "include", 
             body: JSON.stringify({
                 username: signup_username,
                 password: signup_password,
@@ -68,18 +65,17 @@ async function signup() {
             })
         });
 
-        const result = await response.text();
+        const result = await response.json();
 
         if (response.ok) {
-            signup_Message(result);
+            signup_Message(result.message);
             clearAllfields();
         } else {
-            signup_Message(result);
+            signup_Message(result.message);
         }
 
     } catch (err) {
-        console.error("Signup error:", err);
-        signup_Message("Server error");
+        signup_Message(err);
     }
 }
 
@@ -93,7 +89,7 @@ async function login() {
     }
 
     try {
-        const response = await fetch("/login", {
+        const response = await fetch("/api/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -109,14 +105,12 @@ async function login() {
 
         if (response.ok) {
             login_Message("Login successful!");
-            sessionStorage.setItem("username", login_username);
-            sessionStorage.setItem("role", result.role);
-
+            document.cookie = `username=${login_username}; path=/; max-age=${60 * 60 * 24}`;
             setTimeout(() => {
                 if (result.role === "admin") {
-                    window.location.href = "/admin";
+                    window.location.href = "/role/admin";
                 } else if (result.role === "teacher") {
-                    window.location.href = "/teacher";
+                    window.location.href = "/role/teacher";
                 } else {
                     alert("Unknown role: " + result.role);
                 }
@@ -126,7 +120,6 @@ async function login() {
         }
 
     } catch (err) {
-        console.error("Login error:", err);
         login_Message("Server error");
     }
 }

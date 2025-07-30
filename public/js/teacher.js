@@ -1,4 +1,3 @@
-let username = null;
 document.addEventListener("DOMContentLoaded", async () => {
     const heading = document.getElementById('heading');
     username = sessionStorage.getItem("username");    

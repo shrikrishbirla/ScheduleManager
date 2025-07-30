@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function populateTeacher() {
-    fetch("/users")
+    fetch("role/users")
         .then(res => res.json())
         .then(users => {
             const teachers = users.filter(u => u.role === "teacher");
