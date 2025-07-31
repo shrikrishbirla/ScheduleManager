@@ -7,8 +7,9 @@ const cookieParser = require('cookie-parser');
 
 dotenv.config();
 
-const authRoutes = require("./routes/auth");
-const roleRoutes = require("./routes/role");
+const authRoutes = require("./routes/authRoute");
+const roleRoutes = require("./routes/roleRoute");
+const lectureRoutes = require("./routes/lectureRoute")
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/role", roleRoutes);
+app.use("/api/data", lectureRoutes);
 
 mongoose
   .connect(process.env.MONGO_URL)

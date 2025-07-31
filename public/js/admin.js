@@ -47,7 +47,7 @@ function populateTeacher() {
 
 async function populateTimetable(username) {
     try {
-        const response = await fetch("/lectures", {credentials: "include"});
+        const response = await fetch("/api/data/lectures", {credentials: "include"});
         const lectures = await response.json();
         document.querySelectorAll(".lecture-slot").forEach(cell => (cell.innerHTML = ""));
         lectures.forEach(lecture => {
@@ -66,7 +66,13 @@ async function populateTimetable(username) {
 }
 
 async function save() {
-    const form = document.querySelector('.form-body');
+
+    const form = document.getElementById("lectureForm");
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    console.log("Submitting this data:", data);
+
     const timeTable = document.querySelector('.timetable-body');
 
     const subject = document.getElementById('subject').value;
@@ -91,15 +97,13 @@ async function save() {
     const lecture = { subject, roomNumber, day, date, startTime, endTime, slot, teacher };
 
     try {
-        const res = await fetch("/add-lecture", {
-            method: "POST",
+        const res = await fetch('/lectures', {
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json"
+                'Content-Type': 'application/json'
             },
-            credentials: "include",
-            body: JSON.stringify(lecture)
-        });
-
+            body: JSON.stringify(data)
+        }).then(res => res.json())
         if (res.ok) {
             populateTimetable(teacher);
         } else {

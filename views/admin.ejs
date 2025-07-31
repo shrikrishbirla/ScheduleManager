@@ -15,11 +15,11 @@
             <form id="lectureForm">
                 <div class="input-box">
                     <label for="subject">Subject Name</label>
-                    <input id="subject" type="text" placeholder="Subject" required>
+                    <input id="subject" type="text" placeholder="Subject" name="subjectName" required>
                 </div>
                 <div class="input-box">
                     <label for="room-number">Room Number</label>
-                    <input id="room-number" type="text" placeholder="Room Number" required>
+                    <input id="room-number" type="text" placeholder="Room Number" name="roomNumber" required>
                 </div>
                 <div class="input-box">
                     <label for="day">Choose a day:</label>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="input-box">
                     <label for="date">Date</label>
-                    <input id="date" type="date" required>
+                    <input id="date" type="date" name="date" required>
                 </div>
                 <div class="input-box #time-slot">
                     <label>Time Slot:</label>
@@ -49,7 +49,7 @@
                 </div>
                 <div class="input-box">
                     <label for="slot">Choose a lecture:</label>
-                    <select name="slot" id="slot">
+                    <select name="lectureNumber" id="slot">
                         <option value="" selected hidden>Choose a lecture</option>
                         <option value="lecture-1">Lecture 1</option>
                         <option value="lecture-2">Lecture 2</option>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="input-box">
                     <label for="selected-teacher">Teacher</label>
-                    <input id="selected-teacher" type="text" readonly required>
+                    <input id="selected-teacher" type="text" name="teacher" readonly required>
                 </div>
                 <div class="input-box message">
                     <p id="errorMessage"></p>
