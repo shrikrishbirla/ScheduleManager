@@ -14,8 +14,8 @@
             <h2 style="text-align: center; margin-bottom: 20px; color: #ff0000;">Add Time Table Details</h2>
             <form id="lectureForm">
                 <div class="input-box">
-                    <label for="subject">Subject Name</label>
-                    <input id="subject" type="text" placeholder="Subject" name="subjectName" required>
+                    <label for="subject-name">Subject Name</label>
+                    <input id="subject-name" type="text" placeholder="Subject" name="subjectName" required>
                 </div>
                 <div class="input-box">
                     <label for="room-number">Room Number</label>
@@ -48,8 +48,8 @@
                     </div>
                 </div>
                 <div class="input-box">
-                    <label for="slot">Choose a lecture:</label>
-                    <select name="lectureNumber" id="slot">
+                    <label for="lectureNumber">Choose a lecture:</label>
+                    <select name="lectureNumber" id="lectureNumber">
                         <option value="" selected hidden>Choose a lecture</option>
                         <option value="lecture-1">Lecture 1</option>
                         <option value="lecture-2">Lecture 2</option>
@@ -69,8 +69,8 @@
                     <p id="errorMessage"></p>
                 </div>
                 <div class="input-box button">
-                    <button  class="cancel-button" type="button" onclick="cancel()">Cancel</button>
-                    <button  class="save-button" type="button" onclick="save()">Save</button>
+                    <button  class="cancel-button" type="button">Cancel</button>
+                    <button  class="save-button" type="button">Save</button>
                 </div>
             </form>
         </div>
@@ -82,7 +82,7 @@
                     <option value="" selected hidden>Choose teacher</option>
                 </select>
             </div>
-            <button  class="add-timetable-details" type="button" onclick="addtimetable()">Add Time Table Details</button>
+            <button  class="add-timetable-details" type="button">Add Time Table Details</button>
         </div>
         <div class="timetable-container">
             <h2 class="admin-heading">Weekly Time Table</h2>

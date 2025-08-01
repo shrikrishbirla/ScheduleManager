@@ -1,7 +1,7 @@
 const users = require('../models/user');
 
 exports.admin = async (req, res) => {
-    const admin = await users.findById(req.session.userID).select('-password');
+    const admin = await users.findById(req.session.userId).select('-password');
     try {
         if (admin && admin.role === 'admin') {
             res.render('admin', { admin });
@@ -16,7 +16,7 @@ exports.admin = async (req, res) => {
 };
 
 exports.teacher = async (req, res) => {
-    const teacher = await users.findById(req.session.userID).select('-password');
+    const teacher = await users.findById(req.session.userId).select('-password');
     try {
         if (teacher && teacher.role === 'teacher') {
             res.render('teacher', { teacher });
@@ -32,7 +32,7 @@ exports.teacher = async (req, res) => {
 
 exports.allUsers = async (req, res) => {
     try {
-    const currentUser = await users.findById(req.session.userID).select('-password');
+    const currentUser = await users.findById(req.session.userId).select('-password');
     if (!currentUser || currentUser.role !== 'admin') {
       return res.status(403).send("Access denied.");
     }

@@ -5,7 +5,9 @@ const router = express.Router();
 
 
 router.post('/add-lecture', isAuth, lectureControllers.addlecture);
-router.get('/lectures', isAuth, lectureControllers.getlecture);
+router.get('/list', isAuth, lectureControllers.teacherList);
+router.get('/currentuser', isAuth, lectureControllers.currentUser);
+router.get('/lectures/:teacherId', isAuth, lectureControllers.getlecture);
 
 
 module.exports = router;

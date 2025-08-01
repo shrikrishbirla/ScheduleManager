@@ -24,6 +24,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
+      secure: false
     },
   })
 );
@@ -38,7 +39,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "auth.html"));
+    res.sendFile(path.join(__dirname, "public", "auth.html"));
 });
 
 app.use("/api/auth", authRoutes);

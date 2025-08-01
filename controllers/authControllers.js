@@ -22,7 +22,7 @@ exports.login = async (req, res) => {
     try {
         const user = await users.findOne({username});
         if(!user || user.password !== password) return res.status(400).json({message: 'Invalid credentails'});
-        req.session.userID = user._id;
+        req.session.userId = user._id;
         res.cookie('username', user.username, {
             maxAge: 1000 * 60 * 60 * 24,
             httpOnly: true

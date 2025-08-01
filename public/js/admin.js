@@ -1,10 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const heading = document.getElementById('heading');
-    const username = sessionStorage.getItem("username");
-    if (heading && username) {
-        heading.innerText = `${username}` || 'Admin';
-    }
-
     populateTeacher();
 
     const teacherSelect = document.getElementById("teacherSelect");
@@ -25,66 +19,64 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function populateTeacher() {
-    fetch("role/users")
-        .then(res => res.json())
-        .then(users => {
-            const teachers = users.filter(u => u.role === "teacher");
-            
+    fetch("/api/data/list")
+    .then(res => res.json())
+    .then(users => {
+        const teachers = users.filter(u => u.role === "teacher");
 
-            const teacherSelect = document.getElementById("teacherSelect");
-            if (!teacherSelect) return;
+        const teacherSelect = document.getElementById("teacherSelect");
+        if (!teacherSelect) return;
 
-            teacherSelect.innerHTML = '<option value="" selected hidden> Select Teacher </option>';
-            teachers.forEach(teacher => {
-                const option = document.createElement("option");
-                option.value = teacher.username;
-                option.textContent = `${teacher.username} (${teacher.email})`;
-                teacherSelect.appendChild(option);
-            });
-        })
-        .catch(err => console.error("Error loading teachers:", err));
+        teacherSelect.innerHTML = '<option value="" selected hidden> Select Teacher </option>';
+        teachers.forEach(teacher => {
+            const option = document.createElement("option");
+            option.value = teacher._id;
+            option.textContent = `${teacher.username} (${teacher.email})`;
+            teacherSelect.appendChild(option);
+        });
+    })
+    .catch(err => console.error("Error loading teachers:", err));
 }
 
-async function populateTimetable(username) {
+async function populateTimetable(teacherId) {
     try {
-        const response = await fetch("/api/data/lectures", {credentials: "include"});
+        const response = await fetch(`/api/data/lectures/${teacherId}`, { credentials: "include" });
         const lectures = await response.json();
+
         document.querySelectorAll(".lecture-slot").forEach(cell => (cell.innerHTML = ""));
+
         lectures.forEach(lecture => {
-            if (lecture.teacher === username) {
-                const slotNumber = lecture.slot.split('-')[1];
-                const cellId = `${lecture.day}-${slotNumber}`;
-                const cell = document.getElementById(cellId);
-                if (cell) {
-                    cell.innerHTML = `${lecture.subject}<br><small>${lecture.roomNumber}</small>`;
-                }
+            if (!lecture.day || !lecture.lectureNumber) return;
+            const lectureNum = lecture.lectureNumber.split('-')[1];
+            if (!lectureNum) return;
+            const cellId = `${lecture.day.toLowerCase()}-${lectureNum}`;
+            const cell = document.getElementById(cellId);
+            if (cell) {
+                const subject = lecture.subjectName || "";
+                const room = lecture.roomNumber || "";
+                cell.innerHTML = `${subject}<br><small>${room}</small>`;
             }
         });
+
     } catch (err) {
         console.error("Error loading lectures:", err);
     }
 }
 
 async function save() {
+    const form = document.querySelector(".form-body");
+    const timeTable = document.querySelector(".timetable-body");
 
-    const form = document.getElementById("lectureForm");
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-
-    console.log("Submitting this data:", data);
-
-    const timeTable = document.querySelector('.timetable-body');
-
-    const subject = document.getElementById('subject').value;
+    const subjectName = document.getElementById('subject-name').value;
     const roomNumber = document.getElementById('room-number').value;
     const day = document.getElementById('day').value;
     const date = document.getElementById('date').value;
     const startTime = document.getElementById('start-time').value;
     const endTime = document.getElementById('end-time').value;
-    const slot = document.getElementById('slot').value;
+    const lectureNumber = document.getElementById('lectureNumber').value;
     const teacher = document.getElementById('selected-teacher').value;
 
-    if (!subject || !roomNumber || !day || !date || !slot || !teacher || !startTime || !endTime) {
+    if (!subjectName || !roomNumber || !day || !date || !lectureNumber || !teacher || !startTime || !endTime) {
         showerrorMessage("Please fill in all fields");
         return;
     }
@@ -94,16 +86,27 @@ async function save() {
         return;
     }
 
-    const lecture = { subject, roomNumber, day, date, startTime, endTime, slot, teacher };
+    const lecture = {
+        subjectName,
+        roomNumber,
+        day,
+        date,
+        startTime,
+        endTime,
+        lectureNumber,
+        teacher
+    };
 
     try {
-        const res = await fetch('/lectures', {
-            method: 'POST',
+        const res = await fetch("/api/data/add-lecture", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify(data)
-        }).then(res => res.json())
+            credentials: "include",
+            body: JSON.stringify(lecture)
+        });
+
         if (res.ok) {
             populateTimetable(teacher);
         } else {
@@ -114,18 +117,20 @@ async function save() {
         console.error("Error saving lecture:", err);
         showerrorMessage("Server error");
     }
-    
-    ['subject', 'room-number', 'day', 'date', 'slot'].forEach(id => {
-        document.getElementById(id).value = '';
+
+    ['subject-name', 'room-number', 'day', 'date', 'lectureNumber'].forEach(id => {
+        const erase = document.getElementById(id);
+        if (erase) erase.value = '';
     });
-    
+
     document.getElementById('start-time').value = '';
     document.getElementById('end-time').value = '';
+    
+    populateTimetable(teacher);
 
     form.classList.add('hidden');
     timeTable.classList.remove('hidden');
 
-    populateTimetable(teacher);
 }
 
 function showerrorMessage(msg) {
@@ -140,8 +145,9 @@ function cancel() {
     const form = document.querySelector('.form-body');
     const timeTable = document.querySelector('.timetable-body');
 
-    ['subject', 'room-number', 'day', 'date', 'slot'].forEach(id => {
-        document.getElementById(id).value = '';
+    ['subject-name', 'room-number', 'day', 'date', 'lectureNumber'].forEach(id => {
+        const erase = document.getElementById(id);
+        if (erase) erase.value = '';
     });
 
     document.getElementById('start-time').value = '';

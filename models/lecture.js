@@ -31,7 +31,8 @@ const lectureSchema = new mongoose.Schema({
   },
   teacher: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'users'
+    ref: 'User',
+    required: true
   }
 }, { timestamps: true });
 

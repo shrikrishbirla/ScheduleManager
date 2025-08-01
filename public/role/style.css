@@ -152,7 +152,7 @@ select {
     border: white solid;
 }
 
-.save-button {
+.save-button, .logout-button{
     border: white solid;
     background-color: #bb2020;
     font-size: 20px;
@@ -165,7 +165,7 @@ select {
     cursor: pointer;
 }
 
-.save-button :hover {
+.save-button, .logout-button :hover {
     background-color: #888;
     transition: .3s ease-in-out;
     background-color: #bb2020;
