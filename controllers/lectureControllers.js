@@ -19,7 +19,6 @@ exports.addlecture = async (req, res) => {
         const newLecture = new lectures({ subjectName, roomNumber, day, date, startTime, endTime, lectureNumber, teacher: teacherUser._id });
         await newLecture.save();
 
-        console.log("Lecture routes loaded");
         res.status(200).json({ message: "Lecture added!" });
     } catch (err) {
         console.error("Error saving lecture:", err);
@@ -92,8 +91,7 @@ exports.leaveRequest = async (req, res) => {
 
         const newLeave = new leave({ teacher, date, reason });
         await newLeave.save();
-
-        console.log('leave request sent!');
+        
         res.status(200).json({ message: "Leave requested" });
     } catch (err) {
         console.error("Error saving lecture:", err);

@@ -137,7 +137,7 @@ function cancelLeave() {
     const form = document.querySelector('.leave-body');
     const timeTable = document.querySelector('.timetable-body');
 
-    ['dateofleave', 'reasonofleave'].forEach(id => {
+    ['date', 'reason'].forEach(id => {
         document.getElementById(id).value = '';
     });
 

@@ -13,7 +13,7 @@
         <div class="leave-table">
             <form id="leaveForm" method="post" action="/api/data/leave-request">
                 <div class="heading" style="margin: 10px;">
-                    <h2 style=" display: flex; justify-content: center;">Leave Request from <% if (username) { %> <%= username %> <% } else { %> Teacher <% } %></h2>
+                    <h2 style=" display: flex; justify-content: center; color: #ff0000;">Leave Request from <b style="color: #fff; margin: 0px 10px;"><% if (username) { %> <%= username %> <% } else { %> Teacher <% } %></b></h2>
                 </div>
                 <div class="input-box">
                     <label for="teacher">Teacher</label>
