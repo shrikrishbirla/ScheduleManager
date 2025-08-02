@@ -11,17 +11,21 @@
     <%- include('partials/nav-bar') %>
     <div class="leave-body hidden">
         <div class="leave-table">
-            <form id="leaveForm">
+            <form id="leaveForm" method="post" action="/api/data/leave-request">
                 <div class="heading" style="margin: 10px;">
                     <h2 style=" display: flex; justify-content: center;">Leave Request from <% if (username) { %> <%= username %> <% } else { %> Teacher <% } %></h2>
-                </div>  
+                </div>
+                <div class="input-box">
+                    <label for="teacher">Teacher</label>
+                    <input id="teacher" type="text" name="teacher" readonly required>
+                </div>
                 <div class="input-box">
                     <label for="dateofleave">Date of Leave:</label>
-                    <input id="dateofleave" type="date" name="dateofleave" required/>
+                    <input id="date" type="date" name="date" required/>
                 </div>
                 <div class="input-box">
                     <label for="reasonofleave">Reason of Leave:</label>
-                    <textarea id="reasonofleave" name="reasonofleave" required></textarea>
+                    <textarea id="reason" name="reason" required></textarea>
                 </div>
                 <div class="input-box message">
                     <p id="errorMessage"></p>

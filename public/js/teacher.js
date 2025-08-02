@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const teacherId = teacher._id;
+    document.getElementById('teacher').value = teacherId;
+
     try {
 
         const response = await fetch(`/api/data/lectures/${teacherId}`, { credentials: "include" });
@@ -31,9 +33,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     document.querySelector(".leave-button")?.addEventListener("click", leaveRequest);
-    document.querySelector(".save-button")?.addEventListener("click", saveLeave);
     document.querySelector(".cancel-button")?.addEventListener("click", cancelLeave);
+    document.querySelector(".save-button")?.addEventListener("click", saveLeave);
     document.querySelector(".logout-button")?.addEventListener("click", logout);
+});
+
+document.querySelector(".save-button")?.addEventListener("submit", function(e) {
+    e.preventDefault();
 });
 
 async function logout() {
@@ -87,10 +93,18 @@ async function saveLeave() {
     const form = document.querySelector('.leave-body');
     const timeTable = document.querySelector('.timetable-body');
 
-    const dateofleave = document.getElementById('dateofleave').value;
-    const reasonofleave = document.getElementById('reasonofleave').value;
+    const leaveDate = document.getElementById('date').value;
+    const leaveReason = document.getElementById('reason').value;
 
-    if (!dateofleave || !reasonofleave) {
+    const getTeacher = await currentTeacher();
+    const teacher = getTeacher._id;
+
+    if (!getTeacher || !teacher) {
+        console.error("Teacher not found or not logged in");
+        return;
+    }
+
+    if (!teacher || !leaveDate|| !leaveReason) {
         showerrorMessage("Please fill in all fields");
         return;
     }
@@ -102,21 +116,21 @@ async function saveLeave() {
                 "Content-Type": "application/json"
             },
             credentials: "include",
-            body: JSON.stringify({ dateofleave: dateofleave, reasonofleave: reasonofleave, teacher: username})
+            body: JSON.stringify({ teacher: teacher, date: leaveDate, reason: leaveReason })
         });
 
         if (res.ok) {
-            cancelLeave();
+            location.reload();
         } else {
             showerrorMessage("Failed to request leave");
         }
     } catch (err) {
         console.error("Error saving lecture:", err);
         showerrorMessage("Server error");
+    } finally {
+        cancelLeave();
     }
 
-    form.classList.add('hidden');
-    timeTable.classList.remove('hidden');
 }
 
 function cancelLeave() {

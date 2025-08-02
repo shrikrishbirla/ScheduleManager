@@ -8,22 +8,6 @@ router.post('/add-lecture', isAuth, lectureControllers.addlecture);
 router.get('/list', isAuth, lectureControllers.teacherList);
 router.get('/currentuser', isAuth, lectureControllers.currentUser);
 router.get('/lectures/:teacherId', isAuth, lectureControllers.getlecture);
-
+router.post('/leave-request', isAuth, lectureControllers.leaveRequest);
 
 module.exports = router;
-
-
-// lectureSlot.post('/leave-request', async (req, res) => {
-//     try {
-//         const data = await fs.readFile(LeaveFile, 'utf8');
-//         const leave = JSON.parse(data);
-
-//         leave.push(req.body);
-//         await fs.writeFile(LeaveFile, JSON.stringify(leave, null, 2));
-
-//         res.status(200).json({ message: "Leave request sent!" });
-//     } catch (err) {
-//         console.error("Error on sending leave request:", err);
-//         res.status(500).send("Server error");
-//     }
-// });
