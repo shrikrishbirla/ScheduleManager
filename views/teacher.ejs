@@ -12,8 +12,8 @@
     <div class="leave-body hidden">
         <div class="leave-table">
             <form id="leaveForm">
-                <div class="heading">
-                    <h2 style="text-align: center; margin-bottom: 20px; color: #ff0000;" >Leave Request from <b><i style="color: #fff;" id="heading"><% if (username) { %> <%= username %> <% } else { %> Teacher <% } %></i></b></h2>
+                <div class="heading" style="margin: 10px;">
+                    <h2 style=" display: flex; justify-content: center;">Leave Request from <% if (username) { %> <%= username %> <% } else { %> Teacher <% } %></h2>
                 </div>  
                 <div class="input-box">
                     <label for="dateofleave">Date of Leave:</label>

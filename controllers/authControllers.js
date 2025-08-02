@@ -1,5 +1,4 @@
 const users = require('../models/user');
-
 exports.register = async (req, res) => {
     const {username, role, email, password} = req.body;
     try {
@@ -32,4 +31,18 @@ exports.login = async (req, res) => {
     catch (err) {
         res.status(500).json({message: err.message});
     }
+};
+
+exports.logout = (req, res) => {
+    req.session.destroy(err => {
+
+    if (err) {
+      console.error("Error destroying session:", err);
+      return res.status(500).send("Logout failed");
+    }
+
+    res.clearCookie('connect.sid', { path: '/'});
+    res.clearCookie('username', { path: '/'});
+    res.sendStatus(200);
+  });
 };

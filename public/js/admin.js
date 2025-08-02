@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".save-button")?.addEventListener("click", save);
     document.querySelector(".cancel-button")?.addEventListener("click", cancel);
     document.querySelector(".add-timetable-details")?.addEventListener("click", addtimetable);
+    document.querySelector(".logout-button")?.addEventListener("click", logout);
 });
 
 function populateTeacher() {
@@ -37,6 +38,23 @@ function populateTeacher() {
     })
     .catch(err => console.error("Error loading teachers:", err));
 }
+
+async function logout() {
+    try {
+        const res = await fetch("/api/auth/logout", {
+            method: "GET",
+            credentials: "include"
+        });
+
+        if (res.redirected) {
+            window.location.href = res.url;
+        } else {
+            window.location.href = "/";
+        }
+    } catch (err) {
+        console.error("Logout failed:", err);
+    }
+};
 
 async function populateTimetable(teacherId) {
     try {

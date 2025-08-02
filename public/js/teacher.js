@@ -33,7 +33,25 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector(".leave-button")?.addEventListener("click", leaveRequest);
     document.querySelector(".save-button")?.addEventListener("click", saveLeave);
     document.querySelector(".cancel-button")?.addEventListener("click", cancelLeave);
+    document.querySelector(".logout-button")?.addEventListener("click", logout);
 });
+
+async function logout() {
+    try {
+        const res = await fetch("/api/auth/logout", {
+            method: "GET",
+            credentials: "include"
+        });
+
+        if (res.redirected) {
+            window.location.href = res.url;
+        } else {
+            window.location.href = "/";
+        }
+    } catch (err) {
+        console.error("Logout failed:", err);
+    }
+};
 
 async function currentTeacher() {
     try {

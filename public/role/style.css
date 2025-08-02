@@ -1,252 +1,299 @@
 * {
-    margin: 0%;
-    padding: 0%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Poppins', 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #581313, #bb2020);
+  color: #f1f1f1;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .nav-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: linear-gradient(10deg, #4d4545, #000000);
-    color: #fff;
-    padding: 5px 10px;
+  background: linear-gradient(135deg, #000000, #551111);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 32px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.nav-bar p {
-    font-weight: bolder;
-    font-size: 25px;
-}
-
-.nav-bar #logo {
-    width: 70px;
-}
-
-.nav-bar #user-profile {
-    width: 50px;
-    margin: 5px;
+.nav-bar img#logo {
+  height: 48px;
 }
 
 .user-account {
-    display: inline-flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
-.form-body, .leave-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 85vh;
-    margin: 0%;
-    background: linear-gradient(90deg, #814d4d, #be4a4a);
+.user-account img {
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid #bb2020;
 }
 
-.form-table, .leave-table {
-    width: 100%;
-    max-width: 400px;
-    padding: 30px 40px;
-    background-color: rgb(0, 0, 0);
-    border-radius: 10px;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+.timetable-body {
+  padding: 40px 5%;
 }
 
-.input-box {
-    margin: 5px 0px;
-}
-
-.time-slot {
-    background: linear-gradient(90deg, #814d4d, #be4a4a);
-    display: flex;
-    width: 90%;
-    border-radius: 10px;
-    padding: 20px;
-    margin: auto;
-}
-
-#time-slot {
-    margin: 20px;
-}
-
-.time-slot label {
-    font-size: 20px;
-    margin: auto;
-}
-
-.time-slot input[type="time"]{
-    width: 20%;
-    margin: 10px;
-    font-size: 10px;
-}
-
-.input-box.message {
-    display: flex;
-    justify-content: center;
-}
-
-label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    font-size: 20px;
-    color: #fff;
-}
-
-textarea {
-    width: 93%;
-    height: 20vh;
-    padding: 12px 14px;
-    transition: 0.3s ease;
-    outline: none;
-    font-size: 16px;
-    border: 1px solid rgba(0, 0, 0, 0.9);
-    border-radius: 5px;
-    resize: none;
-}
-
-input {
-    width: 93%;
-    padding: 12px 14px;
-    transition: 0.3s ease;
-    outline: none;
-    font-size: 16px;
-    border: 1px solid rgba(0, 0, 0, 0.9);
-    border-radius: 5px;
-}
-
-input[type="date"] {
-    cursor: pointer;
-}
-
-select {
-    width: 100%;
-    padding: 12px 10px;
-    transition: 0.3s ease;
-    outline: none;
-    font-size: 16px;
-    border: 1px solid rgba(0, 0, 0, 0.9);
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.button {
-    width: 100%;
-    display: inline-flex;
-    justify-content: right;
-    
-}
-
-.cancel-button {
-    background-color: transparent;
-    font-size: 20px;
-    font-weight: bold;
-    width: 100px;
-    height: 50px;
-    margin: 5px;
-    border-radius: 10px;
-    color: #fff;
-    cursor: pointer;
-    border: white solid;
-}
-
-.save-button, .logout-button{
-    border: white solid;
-    background-color: #bb2020;
-    font-size: 20px;
-    font-weight: bold;
-    width: 100px;
-    height: 50px;
-    margin: 5px;
-    border-radius: 10px;
-    color: #fff;
-    cursor: pointer;
-}
-
-.save-button, .logout-button :hover {
-    background-color: #888;
-    transition: .3s ease-in-out;
-    background-color: #bb2020;
-    color: #000;
-}
-
-p#errorMessage {
-    color: red;
-    font-weight: bolder;
-}
-
-.hidden {
-    display: none;
-}
-
-.teacher-body, .admin-body {
-    background: linear-gradient(90deg, #814d4d, #be4a4a);
-}
-
-/* time-table css */
 .timetable-container {
-    margin: 30px auto;
-    width: 100%;
-    max-width: 1000px;
-    text-align: center;
+  background: #1a1a1a;
+  padding: 32px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(255, 76, 76, 0.2);
+  transition: all 0.4s ease-in-out;
+  border: 1px solid rgba(255, 76, 76, 0.1);
+}
+
+.timetable-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(255, 0, 0, 0.3);
 }
 
 .timetable {
-    width: 100%;
-    border-collapse: collapse;
-    box-shadow: 0 0 10px #ccc;
-    font-family: Arial, sans-serif;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  overflow: hidden;
+  border-radius: 12px;
 }
 
-.timetable th, .timetable td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    min-width: 80px;
-    text-align: center;
+.timetable thead {
+  background: linear-gradient(to right, #881f1f, #9e1a1a);
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
-.timetable th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+.timetable th,
+.timetable td {
+  padding: 14px;
+  text-align: center;
+  border: 1px solid #333;
 }
 
 .timetable td {
-    height: 60px;
-    color: #fff
+  background-color: #2a2a2a;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.timetable td:hover {
+  background: #bb2020;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.admin-heading,
+.teacher-heading {
+  text-align: center;
+  font-size: 2.4rem;
+  color: #bb2020;
+  margin-bottom: 30px;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(255, 0, 0, 0.4);
 }
 
 .controls {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
-.select-users {
-    margin: 0px 20px;
+.select-users select,
+button {
+  padding: 12px 24px;
+  margin: 5px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-weight: 500;
 }
 
-.add-timetable-details, .leave-button {
-    border: white solid;
-    background-color: #bb2020;
-    font-size: 20px;
-    font-weight: bold;
-    height: 50px;
-    padding: 10px;
-    margin: 5px;
-    border-radius: 10px;
-    color: #fff;
-    cursor: pointer;
+.select-users select {
+  background: #1e1e1e;
+  color: #fff;
+  border: 1px solid #ff4c4c;
 }
 
-.admin-heading {
-    margin: 10px;
-    color: #ffffff;
+.select-users select:focus {
+  outline: none;
+  border-color: #ff1f1f;
 }
 
-.teacher-heading {
-    margin: 10px;
-    color: #fff;
+.add-timetable-details,
+.leave-button {
+  background: linear-gradient(to right, #ff4c4c, #d60000);
+  color: white;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+}
+
+.add-timetable-details:hover,
+.leave-button:hover {
+  background: #e60000;
+  transform: translateY(-2px);
+}
+
+.form-body,
+.leave-body {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.hidden {
+  display: none !important;
+}
+
+.form-table,
+.leave-table {
+  background: rgba(34, 34, 34, 0.95);
+  padding: 35px;
+  border-radius: 18px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.input-box label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #ccc;
+}
+
+.input-box input,
+.input-box select,
+.input-box textarea {
+  padding: 12px;
+  border-radius: 8px;
+  background: #1b1b1b;
+  color: #fff;
+  border: 1px solid #ff4c4c;
+  font-size: 1rem;
+  resize: none;
+  transition: border 0.2s;
+}
+
+.input-box input:focus,
+.input-box select:focus,
+.input-box textarea:focus {
+  border-color: #ff1f1f;
+  outline: none;
+}
+
+.time-slot {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.input-box.button {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.cancel-button,
+.save-button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.cancel-button {
+  background: #666;
+  color: #fff;
+}
+
+.save-button {
+  background: #ff4c4c;
+  color: #fff;
+}
+
+.cancel-button:hover {
+  background: #555;
+}
+
+.save-button:hover {
+  background: #e60000;
+}
+
+.input-box.message p {
+  color: #ff4c4c;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #ff4c4c;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+  }
+
+  .time-slot {
+    flex-direction: column;
+  }
+
+  .timetable th,
+  .timetable td {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .form-table,
+  .leave-table {
+    width: 95%;
+  }
+
+  .admin-heading,
+  .teacher-heading {
+    font-size: 1.7rem;
+  }
 }
