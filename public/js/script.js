@@ -40,7 +40,7 @@ function updateClock() {
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
-        hour12: true
+        hour12: false
     };
     const formatted = now.toLocaleString('en-IN', options);
     document.getElementById('live-clock').textContent = formatted;

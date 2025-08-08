@@ -53,6 +53,7 @@ body {
   padding: 14px 32px;
   position: sticky;
   top: 0;
+  font-weight: bolder;
   z-index: 1000;
 }
 
@@ -66,6 +67,7 @@ body {
   gap: 12px;
   font-size: 1rem;
   font-weight: 500;
+  font-weight: bolder;
 }
 
 .user-account img {
