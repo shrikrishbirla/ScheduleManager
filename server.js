@@ -10,6 +10,7 @@ dotenv.config();
 const authRoutes = require("./routes/authRoute");
 const roleRoutes = require("./routes/roleRoute");
 const lectureRoutes = require("./routes/lectureRoute")
+const dateTimeMiddleware = require("./middleware/datetimeMiddleware")
 
 const app = express();
 
@@ -31,7 +32,7 @@ app.use(
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-
+app.use(dateTimeMiddleware);
 app.use(express.static("public"));
 app.use((req, res, next) => {
   res.locals.username = req.cookies.username || null;

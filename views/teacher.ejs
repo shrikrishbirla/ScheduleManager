@@ -9,6 +9,7 @@
 </head>
 <body class="teacher-body">
     <%- include('partials/nav-bar') %>
+    <%- include('partials/over-panel') %>
     <div class="leave-body hidden">
         <div class="leave-table">
             <form id="leaveForm" method="post" action="/api/data/leave-request">
@@ -16,8 +17,8 @@
                     <h2 style=" display: flex; justify-content: center; color: #ff0000;">Leave Request from <b style="color: #fff; margin: 0px 10px;"><% if (username) { %> <%= username %> <% } else { %> Teacher <% } %></b></h2>
                 </div>
                 <div class="input-box">
-                    <label for="teacher">Teacher</label>
-                    <input id="teacher" type="text" name="teacher" readonly required>
+                    <label for="teacher" hidden>Teacher</label>
+                    <input id="teacher" type="text" name="teacher" readonly required hidden>
                 </div>
                 <div class="input-box">
                     <label for="dateofleave">Date of Leave:</label>
@@ -70,5 +71,6 @@
         </div>
     </div>
     <script src="/js/teacher.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 </html>
