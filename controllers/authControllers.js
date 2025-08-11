@@ -33,6 +33,35 @@ exports.login = async (req, res) => {
     }
 };
 
+exports.update = async (req, res) => {
+    const { email, password, confirm } = req.body;
+
+    try {
+        const exist = await users.findOne({ email });
+        if (!exist) {
+            return res.status(400).json({ message: 'user not found' });
+        }
+
+        if (password !== confirm) {
+            return res.status(400).json({ message: 'Passwords do not match' });
+        }
+
+        if (password === exist.password) {
+            return res.status(400).json({ message: 'New password must be different from old password' });
+        }
+
+        await users.updateOne(
+            { email },
+            { $set: { password: password } }
+        );
+
+        res.status(200).json({ message: 'Password updated successfully' });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+
 exports.logout = (req, res) => {
     req.session.destroy(err => {
 

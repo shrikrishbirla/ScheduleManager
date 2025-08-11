@@ -29,10 +29,7 @@ body {
 
 .page {
   flex: 1;
-  background: #111;
-  background-image: url('https://corporate.target.com/getmedia/890f3192-ce35-496a-a3cf-15fc0a8105d0/Target_Bullseye-Logo_Red.jpg?width=1144');
-  background-size: cover;
-  background-position: center;
+  background: #111 url('https://corporate.target.com/getmedia/890f3192-ce35-496a-a3cf-15fc0a8105d0/Target_Bullseye-Logo_Red.jpg?width=1144') center/cover no-repeat;
 }
 
 .form-box {
@@ -68,8 +65,8 @@ form {
   height: 50px;
   padding: 0 16px;
   font-size: 16px;
-  border-radius: 12px;
   border: none;
+  border-radius: 12px;
   background: #1e1e1e;
   color: #fff;
   transition: 0.3s ease;
@@ -100,8 +97,8 @@ form {
 .role label {
   display: flex;
   align-items: center;
-  font-size: 16px;
   gap: 6px;
+  font-size: 16px;
 }
 
 .role input[type='radio'] {
@@ -115,12 +112,12 @@ form {
   height: 50px;
   font-size: 18px;
   font-weight: 600;
-  border-radius: 12px;
   border: none;
+  border-radius: 12px;
   background: linear-gradient(to right, #ff4b2b, #ff416c);
   color: #fff;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .input-box button:hover {
@@ -128,21 +125,25 @@ form {
   box-shadow: 0 0 10px #ff4b2b80;
 }
 
-.switch {
+.switch,
+.forgot {
   margin-top: 20px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-.switch p {
+.switch p:not(.message),
+.forgot p:not(.message) {
   color: #ffee00;
   font-weight: 500;
 }
 
 .switch a,
+.forgot a,
 #login-link,
-#registeration-link {
+#registeration-link,
+#forgot-password {
   margin-left: 6px;
   color: #fff;
   font-weight: 600;
@@ -151,9 +152,15 @@ form {
 }
 
 .switch a:hover,
+.forgot a:hover,
 #login-link:hover,
-#registeration-link:hover {
+#registeration-link:hover,
+#forgot-password:hover {
   text-decoration: underline;
+}
+
+.hidden {
+  display: none;
 }
 
 .message {
@@ -162,34 +169,6 @@ form {
   font-weight: bold;
   margin-top: 15px;
 }
-
-.forgot {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.forgot p {
-  color: #ffee00;
-  font-weight: 500;
-}
-
-.forgot a,
-#forgot-password {
-  margin-left: 6px;
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-.forgot a:hover,
-#forgot-password:hover {
-  text-decoration: underline;
-}
-.hidden {
-  display: none;
-}
-
 
 @media screen and (max-width: 900px) {
   .container {
@@ -206,11 +185,6 @@ form {
   .form-box {
     border-left: none;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0;
     padding: 40px 20px;
-  }
-
-  form {
-    height: auto;
   }
 }

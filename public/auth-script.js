@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const signup_error = document.getElementById('message-signup');
     const login_error = document.getElementById('login-message');
+    const forgot_error = document.getElementById('forgot-message');
 
     if (login_link) {
         login_link.addEventListener('click', () => {
@@ -46,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("registerAuthForm").addEventListener("submit", e => e.preventDefault());
     document.getElementById("loginAuthForm").addEventListener("submit", e => e.preventDefault());
+    document.getElementById("forgotAuthForm").addEventListener("submit", e => e.preventDefault()); // new
 
     async function signup() {
         const selectedRole = document.querySelector('input[name="role"]:checked');
@@ -130,6 +132,54 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    async function updatePassword() {
+        const forgot_email = document.getElementById('forgot-email').value;
+        const new_password = document.getElementById('forgot-password-input').value;
+        const confirm_password = document.getElementById('forgot-confirm-password').value;
+
+        if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(forgot_email)) {
+            signup_Message("Invalid email format");
+            return;
+        }
+        if (!forgot_email || !new_password || !confirm_password) {
+            forgot_Message("Please fill in all fields");
+            return;
+        }
+        if (new_password.length < 6) {
+            forgot_Message("Password should be at least 6 characters");
+            return;
+        }
+        if (new_password !== confirm_password) {
+            forgot_Message("Passwords do not match");
+            return;
+        }
+
+        try {
+            const response = await fetch("/api/auth/update", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email: forgot_email,
+                    password: new_password,
+                    confirm: confirm_password
+                })
+            });
+
+            const result = await response.json();
+            forgot_Message(result.message);
+
+            if (response.ok) {
+                clearAllfields();
+                setTimeout(() => {
+                    login_form.classList.remove('hidden');
+                    forgot_form.classList.add('hidden');
+                }, 1500);
+            }
+        } catch (err) {
+            forgot_Message("Server error");
+        }
+    }
+
     function signup_Message(msg) {
         signup_error.innerText = msg;
         setTimeout(removeMessage, 2000);
@@ -140,9 +190,15 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(removeMessage, 2000);
     }
 
+    function forgot_Message(msg) {
+        forgot_error.innerText = msg;
+        setTimeout(removeMessage, 2000);
+    }
+
     function removeMessage() {
         signup_error.innerText = '';
         login_error.innerText = '';
+        if (forgot_error) forgot_error.innerText = '';
     }
 
     function clearAllfields() {
@@ -157,4 +213,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.signup = signup;
     window.login = login;
+    window.updatePassword = updatePassword;
 });
