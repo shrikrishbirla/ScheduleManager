@@ -6,7 +6,7 @@
     <title>Company | Authentication</title>
     <link rel="stylesheet" href="auth-style.css">
     <link href="https://assets.targetimg1.com/static/images/favicon.ico" id="favicon" rel="icon" type="image/png">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -19,30 +19,32 @@
                 </div>
                 <div class="input-box">
                     <input type="text" id="signup-username" placeholder="Username" required>
-                    <i class='bx bx-user'></i> 
+                    <i class='bx bx-user'></i>
                 </div>
                 <div class="input-box role">
-                    <label for="admin">Admin<input type="radio" value="admin" name="role" id="admin"></label>
-                    <label for="teacher">Teacher<input type="radio" value="teacher" name="role" id="teacher"></label>
+                    <label for="admin">Admin
+                        <input type="radio" value="admin" name="role" id="admin">
+                    </label>
+                    <label for="teacher">Teacher
+                        <input type="radio" value="teacher" name="role" id="teacher">
+                    </label>
                 </div>
                 <div class="input-box">
                     <input type="email" id="user-email" placeholder="Email" required>
-                    <i class='bx bx-at'></i> 
+                    <i class='bx bx-at'></i>
                 </div>
                 <div class="input-box">
                     <input type="password" id="signup-password" placeholder="Password" required>
-                    <i class='bx bx-key'></i> 
+                    <i class='bx bx-key'></i>
                 </div>
                 <div class="input-box">
                     <input type="password" id="confirm-password" placeholder="Confirm Password" required>
-                    <i class='bx bx-lock-open'></i> 
+                    <i class='bx bx-lock-open'></i>
                 </div>
                 <div class="input-box">
                     <button class="button" type="submit" onclick="signup()">Create account</button>
                 </div>
-                <div class="message">
-                    <p id="message-signup" class="message"></p>
-                </div>
+                <p id="message-signup" class="message"></p>
                 <div class="switch">
                     <p>Already have an account?</p>
                     <a id="login-link">Sign-in</a>
@@ -57,11 +59,11 @@
                 </div>
                 <div class="input-box">
                     <input type="text" id="login-username" placeholder="Username" required>
-                    <i class='bx bx-user'></i> 
+                    <i class='bx bx-user'></i>
                 </div>
                 <div class="input-box">
                     <input type="password" id="login-password" placeholder="Password" required>
-                    <i class='bx bx-lock'></i> 
+                    <i class='bx bx-lock'></i>
                 </div>
                 <div class="input-box">
                     <button class="button" type="button" onclick="login()">Login</button>
@@ -71,7 +73,7 @@
                     <p>Don't have an account?</p>
                     <a id="registeration-link">Sign-up</a>
                 </div>
-                <div class="forgot">
+                <div class="forgot-link">
                     <p>Forgotten password?</p>
                     <a id="forgot-link">Forgot Password</a>
                 </div>
@@ -81,25 +83,25 @@
         <div class="form-box forgot hidden">
             <form action="" id="forgotAuthForm">
                 <div class="heading">
-                    <h1>dw: I Gotchu</h1>
+                    <h1>dw: I gotchu</h1>
                 </div>
                 <div class="input-box">
                     <input type="email" id="forgot-email" placeholder="Email" required>
-                    <i class='bx bx-at'></i> 
+                    <i class='bx bx-at'></i>
                 </div>
                 <div class="input-box">
                     <input type="password" id="forgot-password-input" placeholder="New Password" required>
-                    <i class='bx bx-key'></i> 
+                    <i class='bx bx-key'></i>
                 </div>
                 <div class="input-box">
                     <input type="password" id="forgot-confirm-password" placeholder="Confirm Password" required>
-                    <i class='bx bx-lock-open'></i> 
+                    <i class='bx bx-lock-open'></i>
                 </div>
                 <div class="input-box">
-                    <button class="button" type="button" onclick="updatePassword()">Let's Go</button>
+                    <button class="button" type="button" onclick="updatePassword()">Reset Password</button>
                 </div>
                 <p id="forgot-message" class="message"></p>
-                <div class="switch">
+                <div class="forgot-link">
                     <p>Let's sign in</p>
                     <a id="login-link-forgot">Sign-in</a>
                 </div>

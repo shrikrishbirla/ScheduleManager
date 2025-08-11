@@ -4,6 +4,17 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary-color: #ff4b2b;
+  --secondary-color: #ff416c;
+  --text-light: #fff;
+  --text-muted: #ccc;
+  --bg-dark: #000;
+  --bg-input: #1e1e1e;
+  --radius: 12px;
+  --transition: 0.3s ease;
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -11,7 +22,7 @@ body {
   min-height: 100vh;
   font-family: 'Segoe UI', Roboto, sans-serif;
   background: linear-gradient(135deg, #581313, #bb2020);
-  overflow: hidden;
+  color: var(--text-light);
 }
 
 .container {
@@ -24,12 +35,13 @@ body {
   border-radius: 20px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
   overflow: hidden;
-  transition: 0.4s ease-in-out;
+  transition: var(--transition);
 }
 
 .page {
   flex: 1;
-  background: #111 url('https://corporate.target.com/getmedia/890f3192-ce35-496a-a3cf-15fc0a8105d0/Target_Bullseye-Logo_Red.jpg?width=1144') center/cover no-repeat;
+  background: #111 url('https://corporate.target.com/getmedia/890f3192-ce35-496a-a3cf-15fc0a8105d0/Target_Bullseye-Logo_Red.jpg?width=1144')
+    center/cover no-repeat;
 }
 
 .form-box {
@@ -37,21 +49,20 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #000;
+  background: var(--bg-dark);
   border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 form {
   width: 90%;
   max-width: 400px;
-  padding: 20px;
 }
 
 .heading {
   text-align: center;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 600;
-  color: #ccc;
+  color: var(--text-muted);
   margin-bottom: 20px;
 }
 
@@ -66,14 +77,14 @@ form {
   padding: 0 16px;
   font-size: 16px;
   border: none;
-  border-radius: 12px;
-  background: #1e1e1e;
-  color: #fff;
-  transition: 0.3s ease;
+  border-radius: var(--radius);
+  background: var(--bg-input);
+  color: var(--text-light);
+  transition: var(--transition);
 }
 
 .input-box input:focus {
-  outline: 2px solid #ff4b2b;
+  outline: 2px solid var(--primary-color);
   background: #222;
 }
 
@@ -89,9 +100,8 @@ form {
 .input-box.role {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  color: #fff;
+  gap: 15px;
+  color: var(--text-light);
 }
 
 .role label {
@@ -99,10 +109,11 @@ form {
   align-items: center;
   gap: 6px;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .role input[type='radio'] {
-  accent-color: #ff4b2b;
+  accent-color: var(--primary-color);
   width: 18px;
   height: 18px;
 }
@@ -113,49 +124,44 @@ form {
   font-size: 18px;
   font-weight: 600;
   border: none;
-  border-radius: 12px;
-  background: linear-gradient(to right, #ff4b2b, #ff416c);
-  color: #fff;
+  border-radius: var(--radius);
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  color: var(--text-light);
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: var(--transition);
 }
 
 .input-box button:hover {
-  transform: scale(1.03);
+  transform: scale(1.05);
   box-shadow: 0 0 10px #ff4b2b80;
 }
 
 .switch,
-.forgot {
+.forgot-link {
   margin-top: 20px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  font-size: 0.95rem;
 }
 
-.switch p:not(.message),
-.forgot p:not(.message) {
+.switch p,
+.forgot-link p {
   color: #ffee00;
   font-weight: 500;
 }
 
 .switch a,
-.forgot a,
-#login-link,
-#registeration-link,
-#forgot-password {
+.forgot-link a {
   margin-left: 6px;
-  color: #fff;
+  color: var(--text-light);
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: var(--transition);
 }
 
 .switch a:hover,
-.forgot a:hover,
-#login-link:hover,
-#registeration-link:hover,
-#forgot-password:hover {
+.forgot-link a:hover {
   text-decoration: underline;
 }
 
@@ -170,12 +176,11 @@ form {
   margin-top: 15px;
 }
 
-@media screen and (max-width: 900px) {
+@media (max-width: 900px) {
   .container {
     flex-direction: column;
     width: 95vw;
     height: auto;
-    border-radius: 20px;
   }
 
   .page {
