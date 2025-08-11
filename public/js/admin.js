@@ -17,7 +17,17 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".cancel-button")?.addEventListener("click", cancel);
     document.querySelector(".add-timetable-details")?.addEventListener("click", addtimetable);
     document.querySelector(".logout-button")?.addEventListener("click", logout);
+    document.querySelector("#admin-panel")?.addEventListener('click', panelsettings);
+    document.querySelector("#admin-dashboard")?.addEventListener('click', movebacktodashboard);
 });
+
+function panelsettings() {
+
+}
+
+function movebacktodashboard() {
+    location.href = "/role/admin";
+}
 
 function populateTeacher() {
     fetch("/api/data/list")
