@@ -163,9 +163,33 @@ form {
   margin-top: 15px;
 }
 
+.forgot {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.forgot p {
+  color: #ffee00;
+  font-weight: 500;
+}
+
+.forgot a,
+#forgot-password {
+  margin-left: 6px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.forgot a:hover,
+#forgot-password:hover {
+  text-decoration: underline;
+}
 .hidden {
   display: none;
 }
+
 
 @media screen and (max-width: 900px) {
   .container {
