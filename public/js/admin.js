@@ -17,16 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".cancel-button")?.addEventListener("click", cancel);
     document.querySelector(".add-timetable-details")?.addEventListener("click", addtimetable);
     document.querySelector(".logout-button")?.addEventListener("click", logout);
-    document.querySelector("#admin-panel")?.addEventListener('click', panelsettings);
-    document.querySelector("#admin-dashboard")?.addEventListener('click', movebacktodashboard);
+    document.querySelector(".dashboard")?.addEventListener("click", dashboard);
 });
 
-function panelsettings() {
-
-}
-
-function movebacktodashboard() {
-    location.href = "/role/admin";
+function dashboard() {
+    window.location.href = "/api/role/admin-dashboard";
 }
 
 function populateTeacher() {

@@ -36,7 +36,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector(".cancel-button")?.addEventListener("click", cancelLeave);
     document.querySelector(".save-button")?.addEventListener("click", saveLeave);
     document.querySelector(".logout-button")?.addEventListener("click", logout);
+    document.querySelector(".dashboard")?.addEventListener("click", dashboard);
 });
+
+function dashboard() {
+    window.location.href = "/api/role/teacher-dashboard";
+}
 
 document.querySelector(".save-button")?.addEventListener("submit", function(e) {
     e.preventDefault();
@@ -110,7 +115,7 @@ async function saveLeave() {
     }
 
     try {
-        const res = await fetch("/leave-request", {
+        const res = await fetch("/api/data/leave/leave-request", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

@@ -1,35 +1,8 @@
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-.over-panel {
-  position: fixed;
-  top: 7rem;
-  left: 7rem;
-  transform: translate(-50%, -50%);
-  
-  padding: 1rem 0;
-
-  background: linear-gradient(135deg, rgba(71, 69, 69, 0.6), rgba(29, 28, 28, 0.6));
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
-  border-radius: 12px;
-  color: white;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-
-  z-index: 1000;
-
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.over-panel.visible {
-  opacity: 1;
-  visibility: visible;
 }
 
 html {
@@ -159,8 +132,9 @@ button {
 }
 
 button:hover {
-  background-color: #881f1f;
-  color: #fff;
+  background: linear-gradient(to right, #ff4c4c, #000000);
+  color: white;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
 }
 
 .select-users select {
@@ -175,15 +149,15 @@ button:hover {
 }
 
 .add-timetable-details,
-.leave-button {
+.leave-button,  .dashboard{
   background: linear-gradient(to right, #ff4c4c, #d60000);
   color: white;
   box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
 }
 
 .add-timetable-details:hover,
-.leave-button:hover {
-  background: #e60000;
+.leave-button:hover,  .dashboard:hover {
+  background: linear-gradient(to right, #ff4c4c, #000000);
   transform: translateY(-2px);
 }
 
@@ -216,7 +190,6 @@ button:hover {
   border-radius: 18px;
   width: 90%;
   max-width: 600px;
-  box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
   backdrop-filter: blur(6px);
 }
 
@@ -237,9 +210,9 @@ button:hover {
 .input-box textarea {
   padding: 12px;
   border-radius: 8px;
-  background: #1b1b1b;
-  color: #fff;
-  border: 1px solid #ff4c4c;
+  background: #ffffff;
+  color: #000000;
+  border: 3px solid #ff4c4c;
   font-size: 1rem;
   resize: none;
   transition: border 0.2s;
@@ -277,6 +250,17 @@ button:hover {
   justify-content: flex-end;
   margin: 10px;
 }
+
+.side-panel {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 15px;
+  background: linear-gradient(to right, rgba(119, 119, 119, 0.7), rgba(119, 119, 119, 0.5));
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
 
 .cancel-button {
   background: #666;

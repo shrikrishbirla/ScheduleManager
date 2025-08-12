@@ -5,42 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://assets.targetimg1.com/static/images/favicon.ico" id="favicon" rel="icon" type="image/png">
     <link rel="stylesheet" href="style.css">
-    <title>Dashboard | Teacher</title>
+    <title>Teacher</title>
 </head>
 <body class="teacher-body">
     <%- include('partials/nav-bar') %>
-    <div class="leave-body hidden">
-        <div class="leave-table">
-            <form id="leaveForm" method="post" action="/api/data/leave-request">
-                <div class="heading" style="margin: 10px;">
-                    <h2 style=" display: flex; justify-content: center; color: #ff0000;">Leave Request from <b style="color: #fff; margin: 0px 10px;"><% if (username) { %> <%= username %> <% } else { %> Teacher <% } %></b></h2>
-                </div>
-                <div class="input-box">
-                    <label for="teacher" hidden>Teacher</label>
-                    <input id="teacher" type="text" name="teacher" readonly required hidden>
-                </div>
-                <div class="input-box">
-                    <label for="dateofleave">Date of Leave:</label>
-                    <input id="date" type="date" name="date" required/>
-                </div>
-                <div class="input-box">
-                    <label for="reasonofleave">Reason of Leave:</label>
-                    <textarea id="reason" name="reason" required></textarea>
-                </div>
-                <div class="input-box message">
-                    <p id="errorMessage"></p>
-                </div>
-                <div class="input-box button">
-                    <button class="cancel-button" type="button" onclick="cancelLeave()">Cancel</button>
-                    <button class="save-button" type="submit" onclick="saveLeave()">Submit</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="timetable-body">
-        <div class="controls">
-            <button class="leave-button" type="button" onclick="leaveRequest()" id="leaveRequest">Leave Request</button>
-        </div>
+    <div class="page-view">
+        <%- include('partials/teacher-panel') %>
+            <div class="timetable-body">
         <div class="timetable-container">
             <h2 class="teacher-heading" >Weekly Time Table</h2>
             <table class="timetable">
@@ -67,6 +38,35 @@
                     <tr><td>Sunday</td>      <td id="sunday-1"></td><td id="sunday-2"></td><td id="sunday-3"></td><td id="sunday-4"></td><td id="sunday-5"></td><td id="sunday-6"></td><td id="sunday-7"></td><td id="sunday-8"></td></tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+    </div>
+    <div class="leave-body hidden">
+        <div class="leave-table">
+            <form id="leaveForm" method="post" action="/api/data/leave-request">
+                <div class="heading" style="margin: 10px;">
+                    <h2 style=" display: flex; justify-content: center; color: #ff0000;">Leave Request from <b style="color: #fff; margin: 0px 10px;"><% if (username) { %> <%= username %> <% } else { %> Teacher <% } %></b></h2>
+                </div>
+                <div class="input-box">
+                    <label for="teacher" hidden>Teacher</label>
+                    <input id="teacher" type="text" name="teacher" readonly required hidden>
+                </div>
+                <div class="input-box">
+                    <label for="dateofleave">Date of Leave:</label>
+                    <input id="date" type="date" name="date" required/>
+                </div>
+                <div class="input-box">
+                    <label for="reasonofleave">Reason of Leave:</label>
+                    <textarea id="reason" name="reason" required></textarea>
+                </div>
+                <div class="input-box message">
+                    <p id="errorMessage"></p>
+                </div>
+                <div class="input-box button">
+                    <button class="cancel-button" type="button" onclick="cancelLeave()">Cancel</button>
+                    <button class="save-button" type="submit" onclick="saveLeave()">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
     <script src="/js/teacher.js"></script>

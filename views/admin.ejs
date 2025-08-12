@@ -5,10 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link href="https://assets.targetimg1.com/static/images/favicon.ico" id="favicon" rel="icon" type="image/png">
-    <title>Dashboard | Admin</title>
+    <title>Admin</title>
 </head>
 <body class="admin-body">
     <%- include('partials/nav-bar') %>
+    <div class="page-view">
+        <%- include('partials/admin-panel') %>
+        <div class="timetable-body">
+        <div class="controls">
+            <div class="select-users">
+                <select name="teachers" id="teacherSelect">
+                    <option value="" selected hidden>Choose teacher</option>
+                </select>
+            </div>
+            <button  class="add-timetable-details" type="button">Add Time Table Details</button>
+        </div>
+        <div class="timetable-container">
+            <h2 class="admin-heading">Weekly Time Table</h2>
+            <table class="timetable">
+                <thead>
+                    <tr>
+                        <th>Day / Lecture</th>
+                        <th>Lecture 1</th>
+                        <th>Lecture 2</th>
+                        <th>Lecture 3</th>
+                        <th>Lecture 4</th>
+                        <th>Lecture 5</th>
+                        <th>Lecture 6</th>
+                        <th>Lecture 7</th>
+                        <th>Lecture 8</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Monday</td>      <td class="lecture-slot" id="monday-1"></td><td class="lecture-slot" id="monday-2"></td><td class="lecture-slot" id="monday-3"></td><td class="lecture-slot" id="monday-4"></td><td class="lecture-slot" id="monday-5"></td><td class="lecture-slot" id="monday-6"></td><td class="lecture-slot" id="monday-7"></td><td class="lecture-slot" id="monday-8"></td></tr>
+                    <tr><td>Tuesday</td>     <td class="lecture-slot" id="tuesday-1"></td><td class="lecture-slot" id="tuesday-2"></td><td class="lecture-slot" id="tuesday-3"></td><td class="lecture-slot" id="tuesday-4"></td><td class="lecture-slot" id="tuesday-5"></td><td class="lecture-slot" id="tuesday-6"></td><td class="lecture-slot" id="tuesday-7"></td><td class="lecture-slot" id="tuesday-8"></td></tr>
+                    <tr><td>Wednesday</td>   <td class="lecture-slot" id="wednesday-1"></td><td class="lecture-slot" id="wednesday-2"></td><td class="lecture-slot" id="wednesday-3"></td><td class="lecture-slot" id="wednesday-4"></td><td class="lecture-slot" id="wednesday-5"></td><td class="lecture-slot" id="wednesday-6"></td><td class="lecture-slot" id="wednesday-7"></td><td class="lecture-slot" id="wednesday-8"></td></tr>
+                    <tr><td>Thursday</td>    <td class="lecture-slot" id="thursday-1"></td><td class="lecture-slot" id="thursday-2"></td><td class="lecture-slot" id="thursday-3"></td><td class="lecture-slot" id="thursday-4"></td><td class="lecture-slot" id="thursday-5"></td><td class="lecture-slot" id="thursday-6"></td><td class="lecture-slot" id="thursday-7"></td><td class="lecture-slot" id="thursday-8"></td></tr>
+                    <tr><td>Friday</td>      <td class="lecture-slot" id="friday-1"></td><td class="lecture-slot" id="friday-2"></td><td class="lecture-slot" id="friday-3"></td><td class="lecture-slot" id="friday-4"></td><td class="lecture-slot" id="friday-5"></td><td class="lecture-slot" id="friday-6"></td><td class="lecture-slot" id="friday-7"></td><td class="lecture-slot" id="friday-8"></td></tr>
+                    <tr><td>Saturday</td>    <td class="lecture-slot" id="saturday-1"></td><td class="lecture-slot" id="saturday-2"></td><td class="lecture-slot" id="saturday-3"></td><td class="lecture-slot" id="saturday-4"></td><td class="lecture-slot" id="saturday-5"></td><td class="lecture-slot" id="saturday-6"></td><td class="lecture-slot" id="saturday-7"></td><td class="lecture-slot" id="saturday-8"></td></tr>
+                    <tr><td>Sunday</td>      <td class="lecture-slot" id="sunday-1"></td><td class="lecture-slot" id="sunday-2"></td><td class="lecture-slot" id="sunday-3"></td><td class="lecture-slot" id="sunday-4"></td><td class="lecture-slot" id="sunday-5"></td><td class="lecture-slot" id="sunday-6"></td><td class="lecture-slot" id="sunday-7"></td><td class="lecture-slot" id="sunday-8"></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
     <div class="form-body hidden">
         <div class="form-table">
             <h2 style="text-align: center; margin-bottom: 20px; color: #ff0000;">Add Time Table Details</h2>
@@ -72,43 +112,6 @@
                     <button  class="save-button" type="button">Save</button>
                 </div>
             </form>
-        </div>
-    </div>
-    <div class="timetable-body">
-        <div class="controls">
-            <div class="select-users">
-                <select name="teachers" id="teacherSelect">
-                    <option value="" selected hidden>Choose teacher</option>
-                </select>
-            </div>
-            <button  class="add-timetable-details" type="button">Add Time Table Details</button>
-        </div>
-        <div class="timetable-container">
-            <h2 class="admin-heading">Weekly Time Table</h2>
-            <table class="timetable">
-                <thead>
-                    <tr>
-                        <th>Day / Lecture</th>
-                        <th>Lecture 1</th>
-                        <th>Lecture 2</th>
-                        <th>Lecture 3</th>
-                        <th>Lecture 4</th>
-                        <th>Lecture 5</th>
-                        <th>Lecture 6</th>
-                        <th>Lecture 7</th>
-                        <th>Lecture 8</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Monday</td>      <td class="lecture-slot" id="monday-1"></td><td class="lecture-slot" id="monday-2"></td><td class="lecture-slot" id="monday-3"></td><td class="lecture-slot" id="monday-4"></td><td class="lecture-slot" id="monday-5"></td><td class="lecture-slot" id="monday-6"></td><td class="lecture-slot" id="monday-7"></td><td class="lecture-slot" id="monday-8"></td></tr>
-                    <tr><td>Tuesday</td>     <td class="lecture-slot" id="tuesday-1"></td><td class="lecture-slot" id="tuesday-2"></td><td class="lecture-slot" id="tuesday-3"></td><td class="lecture-slot" id="tuesday-4"></td><td class="lecture-slot" id="tuesday-5"></td><td class="lecture-slot" id="tuesday-6"></td><td class="lecture-slot" id="tuesday-7"></td><td class="lecture-slot" id="tuesday-8"></td></tr>
-                    <tr><td>Wednesday</td>   <td class="lecture-slot" id="wednesday-1"></td><td class="lecture-slot" id="wednesday-2"></td><td class="lecture-slot" id="wednesday-3"></td><td class="lecture-slot" id="wednesday-4"></td><td class="lecture-slot" id="wednesday-5"></td><td class="lecture-slot" id="wednesday-6"></td><td class="lecture-slot" id="wednesday-7"></td><td class="lecture-slot" id="wednesday-8"></td></tr>
-                    <tr><td>Thursday</td>    <td class="lecture-slot" id="thursday-1"></td><td class="lecture-slot" id="thursday-2"></td><td class="lecture-slot" id="thursday-3"></td><td class="lecture-slot" id="thursday-4"></td><td class="lecture-slot" id="thursday-5"></td><td class="lecture-slot" id="thursday-6"></td><td class="lecture-slot" id="thursday-7"></td><td class="lecture-slot" id="thursday-8"></td></tr>
-                    <tr><td>Friday</td>      <td class="lecture-slot" id="friday-1"></td><td class="lecture-slot" id="friday-2"></td><td class="lecture-slot" id="friday-3"></td><td class="lecture-slot" id="friday-4"></td><td class="lecture-slot" id="friday-5"></td><td class="lecture-slot" id="friday-6"></td><td class="lecture-slot" id="friday-7"></td><td class="lecture-slot" id="friday-8"></td></tr>
-                    <tr><td>Saturday</td>    <td class="lecture-slot" id="saturday-1"></td><td class="lecture-slot" id="saturday-2"></td><td class="lecture-slot" id="saturday-3"></td><td class="lecture-slot" id="saturday-4"></td><td class="lecture-slot" id="saturday-5"></td><td class="lecture-slot" id="saturday-6"></td><td class="lecture-slot" id="saturday-7"></td><td class="lecture-slot" id="saturday-8"></td></tr>
-                    <tr><td>Sunday</td>      <td class="lecture-slot" id="sunday-1"></td><td class="lecture-slot" id="sunday-2"></td><td class="lecture-slot" id="sunday-3"></td><td class="lecture-slot" id="sunday-4"></td><td class="lecture-slot" id="sunday-5"></td><td class="lecture-slot" id="sunday-6"></td><td class="lecture-slot" id="sunday-7"></td><td class="lecture-slot" id="sunday-8"></td></tr>
-                </tbody>
-            </table>
         </div>
     </div>
 </div>
