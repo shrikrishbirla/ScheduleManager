@@ -41,10 +41,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "auth.html"));
-});
-
 app.use("/api/auth", authRoutes);
 app.use("/role", roleRoutes);
 app.use("/api/data", lectureRoutes);

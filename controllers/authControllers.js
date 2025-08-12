@@ -1,11 +1,15 @@
 const users = require('../models/user');
+const bcrypt = require("bcrypt");
 exports.register = async (req, res) => {
     const {username, role, email, password} = req.body;
     try {
         const exist = await users.findOne({email})
         if(exist) return res.status(400).json({message: 'user already exist'});
+
+        const hashedpassword = await bcrypt.hash(password, 10);
+
         const user = new users ({
-            username, role, email, password
+            username, role, email, password: hashedpassword
         })
         await user.save();
         res.status(200).json({message: 'signup successful'})
@@ -20,7 +24,8 @@ exports.login = async (req, res) => {
 
     try {
         const user = await users.findOne({username});
-        if(!user || user.password !== password) return res.status(400).json({message: 'Invalid credentails'});
+        const isMatched = await bcrypt.compare(password, user.password);
+        if(!user || !isMatched) return res.status(400).json({message: 'Invalid credentails'});
         req.session.userId = user._id;
         res.cookie('username', user.username, {
             maxAge: 1000 * 60 * 60 * 24,
@@ -46,13 +51,15 @@ exports.update = async (req, res) => {
             return res.status(400).json({ message: 'Passwords do not match' });
         }
 
-        if (password === exist.password) {
+        const samePassword = await bcrypt.compare(password, exist.password);
+        if (samePassword) {
             return res.status(400).json({ message: 'New password must be different from old password' });
         }
-
+                
+        const hashedPassword = await bcrypt.hash(password, 10);
         await users.updateOne(
             { email },
-            { $set: { password: password } }
+            { $set: { password: hashedPassword } }
         );
 
         res.status(200).json({ message: 'Password updated successfully' });
