@@ -17,6 +17,7 @@
     "express": "^5.1.0",
     "express-session": "^1.18.1",
     "install": "^0.13.0",
-    "mongoose": "^8.16.5"
+    "mongoose": "^8.16.5",
+    "nodemailer": "^7.0.5"
   }
 }

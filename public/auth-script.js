@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("redirect")?.addEventListener("click", redirect);
     const login_link = document.getElementById('login-link');
     const login_link_forgot = document.getElementById('login-link-forgot');
     const login_form = document.querySelector('.form-box.login');
@@ -8,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const forgot_link = document.getElementById('forgot-link');
     const forgot_form = document.querySelector('.form-box.forgot');
-
+    
     const signup_error = document.getElementById('message-signup');
     const login_error = document.getElementById('login-message');
     const forgot_error = document.getElementById('forgot-message');
@@ -45,9 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    document.getElementById("registerAuthForm").addEventListener("submit", e => e.preventDefault());
-    document.getElementById("loginAuthForm").addEventListener("submit", e => e.preventDefault());
-    document.getElementById("forgotAuthForm").addEventListener("submit", e => e.preventDefault()); // new
+    document.getElementById("registerAuthForm")?.addEventListener("submit", e => e.preventDefault());
+    document.getElementById("loginAuthForm")?.addEventListener("submit", e => e.preventDefault());
+    document.getElementById("forgotAuthForm")?.addEventListener("submit", e => e.preventDefault());
 
     async function signup() {
         const selectedRole = document.querySelector('input[name="role"]:checked');
@@ -92,6 +93,9 @@ document.addEventListener("DOMContentLoaded", () => {
             signup_Message("Server error");
         }
     }
+    function redirect() {
+        window.location.href = "/";
+    }
 
     async function login() {
         const login_username = document.getElementById('login-username').value;
@@ -132,37 +136,75 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    async function updatePassword() {
-        const forgot_email = document.getElementById('forgot-email').value;
-        const new_password = document.getElementById('forgot-password-input').value;
-        const confirm_password = document.getElementById('forgot-confirm-password').value;
-
-        if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(forgot_email)) {
-            signup_Message("Invalid email format");
+    async function requestOtp() {
+        const email = document.getElementById('forgot-email').value;
+        if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(email)) {
+            forgot_Message("Invalid email format");
             return;
         }
-        if (!forgot_email || !new_password || !confirm_password) {
+
+        try {
+            const response = await fetch("api/auth/forgot-password", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email })
+            });
+
+            const result = await response.json();
+            forgot_Message(result.message);
+            window.location.href = "/auth/verify-otp"
+        } catch {
+            forgot_Message("Server error");
+        }
+    }
+
+    async function verifyOtp() {
+        const email = document.getElementById('forgot-email').value;
+        const otp = document.getElementById('forgot-otp').value;
+
+        if (!email || !otp) {
+            forgot_Message("Enter email & OTP");
+            return;
+        }
+
+        try {
+            const response = await fetch("api/auth/verify-otp", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, otp })
+            });
+
+            const result = await response.json();
+            forgot_Message(result.message);
+            window.location.href = "/auth/password-reset"
+        } catch {
+            forgot_Message("Server error");
+        }
+    }
+
+    async function resetPassword() {
+        const email = document.getElementById('forgot-email').value;
+        const password = document.getElementById('forgot-password-input').value;
+        const confirm = document.getElementById('forgot-confirm-password').value;
+
+        if (!email || !password || !confirm) {
             forgot_Message("Please fill in all fields");
             return;
         }
-        if (new_password.length < 6) {
+        if (password.length < 6) {
             forgot_Message("Password should be at least 6 characters");
             return;
         }
-        if (new_password !== confirm_password) {
+        if (password !== confirm) {
             forgot_Message("Passwords do not match");
             return;
         }
 
         try {
-            const response = await fetch("/api/auth/update", {
-                method: "PUT",
+            const response = await fetch("/api/auth/reset-password", {
+                method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    email: forgot_email,
-                    password: new_password,
-                    confirm: confirm_password
-                })
+                body: JSON.stringify({ email, password, confirm })
             });
 
             const result = await response.json();
@@ -174,8 +216,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     login_form.classList.remove('hidden');
                     forgot_form.classList.add('hidden');
                 }, 1500);
+                window.location.href = "/";
             }
-        } catch (err) {
+        } catch {
             forgot_Message("Server error");
         }
     }
@@ -213,5 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.signup = signup;
     window.login = login;
-    window.updatePassword = updatePassword;
+    window.requestOtp = requestOtp;
+    window.verifyOtp = verifyOtp;
+    window.resetPassword = resetPassword;
 });

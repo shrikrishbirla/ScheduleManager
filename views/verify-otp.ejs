@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/auth-style.css">
+    <link href="https://assets.targetimg1.com/static/images/favicon.ico" id="favicon" rel="icon" type="image/png">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <title>Verification</title>
+</head>
+<body>
+    <div class="container">
+        <div class="page"></div>
+        <div class="form-box forgot">
+                <form id="vericationForm" method="post" action="/api/auth/verify-otp">
+                <div class="heading" style="margin: 10px;">
+                    <h2 style=" display: flex; justify-content: center; color: #fff;">Verify OTP</b></h2>
+                </div>
+                <div class="input-box">
+                    <input type="email" id="email" placeholder="Enter Email..." name="email" required>
+                    <i class='bx bx-at'></i>
+                </div>
+                <div class="input-box">
+                    <input type="number" name="otp" id="otp" placeholder="Enter OTP...">
+                </div>
+                <div class="input-box message">
+                    <p id="errorMessage"></p>
+                </div>
+                <div class="input-box button">
+                    <button class="save-button" type="submit">Submit</button>
+                </div>
+                <div class="forgot-link">
+                    <p>Let's sign in</p>
+                    <a id="redirect">Sign-in</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="/auth-script.js"></script>
+</html>
